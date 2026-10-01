@@ -2,7 +2,7 @@ import { readdirSync } from 'node:fs';
 import { defineConfig } from 'tsup';
 
 // One entry per component folder → adding src/components/Foo/index.ts
-// automatically produces dist/foo/index.* (subpath `@acme/ui/foo`, see package.json exports).
+// automatically produces dist/foo/index.* (subpath `@phanvanhieu/ui/foo`, see package.json exports).
 const componentEntries = Object.fromEntries(
   readdirSync('src/components', { withFileTypes: true })
     .filter((d) => d.isDirectory())
