@@ -1,6 +1,6 @@
 {
   "name": "@phanvanhieu/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Internal wrapper library for Ant Design",
   "license": "UNLICENSED",
   "type": "module",
