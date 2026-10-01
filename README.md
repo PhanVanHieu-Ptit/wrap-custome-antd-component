@@ -1,4 +1,4 @@
-# @acme/ui
+# @phanvanhieu/ui
 
 Internal wrapper around [Ant Design](https://ant.design) (v6) that standardises theme, props and refs
 across teams. Rename the package in `package.json` to your scope.
@@ -6,7 +6,7 @@ across teams. Rename the package in `package.json` to your scope.
 ## Usage
 
 ```tsx
-import { Button, Input, ThemeProvider } from '@acme/ui';
+import { Button, Input, ThemeProvider } from '@phanvanhieu/ui';
 
 export function App() {
   return (
@@ -18,7 +18,7 @@ export function App() {
 }
 ```
 
-Per-component subpaths are also available (`@acme/ui/button`, `@acme/ui/input`, `@acme/ui/theme`),
+Per-component subpaths are also available (`@phanvanhieu/ui/button`, `@phanvanhieu/ui/input`, `@phanvanhieu/ui/theme`),
 and the root import is tree-shakable too.
 
 ## Theme layers (lowest → highest priority)
