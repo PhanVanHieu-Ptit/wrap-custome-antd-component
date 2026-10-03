@@ -50,6 +50,36 @@
         "default": "./dist/button/index.cjs"
       }
     },
+    "./checkbox": {
+      "import": {
+        "types": "./dist/checkbox/index.d.ts",
+        "default": "./dist/checkbox/index.js"
+      },
+      "require": {
+        "types": "./dist/checkbox/index.d.cts",
+        "default": "./dist/checkbox/index.cjs"
+      }
+    },
+    "./datepicker": {
+      "import": {
+        "types": "./dist/datepicker/index.d.ts",
+        "default": "./dist/datepicker/index.js"
+      },
+      "require": {
+        "types": "./dist/datepicker/index.d.cts",
+        "default": "./dist/datepicker/index.cjs"
+      }
+    },
+    "./form": {
+      "import": {
+        "types": "./dist/form/index.d.ts",
+        "default": "./dist/form/index.js"
+      },
+      "require": {
+        "types": "./dist/form/index.d.cts",
+        "default": "./dist/form/index.cjs"
+      }
+    },
     "./input": {
       "import": {
         "types": "./dist/input/index.d.ts",
@@ -58,6 +88,46 @@
       "require": {
         "types": "./dist/input/index.d.cts",
         "default": "./dist/input/index.cjs"
+      }
+    },
+    "./inputnumber": {
+      "import": {
+        "types": "./dist/inputnumber/index.d.ts",
+        "default": "./dist/inputnumber/index.js"
+      },
+      "require": {
+        "types": "./dist/inputnumber/index.d.cts",
+        "default": "./dist/inputnumber/index.cjs"
+      }
+    },
+    "./radio": {
+      "import": {
+        "types": "./dist/radio/index.d.ts",
+        "default": "./dist/radio/index.js"
+      },
+      "require": {
+        "types": "./dist/radio/index.d.cts",
+        "default": "./dist/radio/index.cjs"
+      }
+    },
+    "./select": {
+      "import": {
+        "types": "./dist/select/index.d.ts",
+        "default": "./dist/select/index.js"
+      },
+      "require": {
+        "types": "./dist/select/index.d.cts",
+        "default": "./dist/select/index.cjs"
+      }
+    },
+    "./switch": {
+      "import": {
+        "types": "./dist/switch/index.d.ts",
+        "default": "./dist/switch/index.js"
+      },
+      "require": {
+        "types": "./dist/switch/index.d.cts",
+        "default": "./dist/switch/index.cjs"
       }
     },
     "./package.json": "./package.json"
@@ -94,6 +164,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "antd": "^6.6.5",
     "antd-style": "^4.1.0",
+    "dayjs": "^1.11.23",
     "esbuild": "^0.28.2",
     "eslint": "^10.11.0",
     "eslint-plugin-react-hooks": "^7.1.1",
