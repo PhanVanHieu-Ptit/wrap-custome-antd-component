@@ -1,7 +1,12 @@
 # Wrapping an Ant Design component
 
-Template: [`src/components/Button`](../src/components/Button) (simple) and
-[`src/components/Input`](../src/components/Input) (wrapper element + compound parts).
+Templates: [`Button`](../src/components/Button) (simple), [`Input`](../src/components/Input)
+(wrapper element + compound parts), [`Select`](../src/components/Select) (generic),
+[`Checkbox`](../src/components/Checkbox) (thin wrapper + compound parts).
+
+Form controls that show a label / helper / error share `useField` from
+[`src/components/_shared`](../src/components/_shared) — `_`-prefixed folders are internal and are
+not built as public entries.
 
 ## Checklist for a new component `Foo`
 
@@ -23,5 +28,6 @@ Template: [`src/components/Button`](../src/components/Button) (simple) and
 | Wrapper DOM                             | Add extra elements only when a custom prop needs them, so default DOM/ref match antd.                                                                                                     |
 | Compound parts                          | `Object.assign(Base, { Password: AntInput.Password, ... })` keeps the antd typing. Re-wrap a part only when it needs custom props.                                                        |
 | Exports                                 | Named exports only, no top-level side effects (`"sideEffects": false`). Re-export prop/ref types from `index.ts`.                                                                         |
+| Compound parts (declarations)           | When `Object.assign` adds parts and tsup fails with TS2742, annotate the export: `typeof Base & { Option: typeof AntSelect.Option }`.                                                     |
 | Declarations                            | If `tsup` fails with TS2742 ("cannot be named without a reference to…"), give the export an explicit type annotation (see `useThemeToken`).                                               |
 | Generic antd components (Select, Table) | Cast the `forwardRef` result: `as <T>(p: FooProps<T> & { ref?: Ref<FooRef> }) => ReactElement`.                                                                                           |

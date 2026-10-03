@@ -47,6 +47,9 @@ importers:
       antd-style:
         specifier: ^4.1.0
         version: 4.1.0(@types/react@19.3.0)(antd@6.6.5(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      dayjs:
+        specifier: ^1.11.23
+        version: 1.11.23
       esbuild:
         specifier: ^0.28.2
         version: 0.28.2

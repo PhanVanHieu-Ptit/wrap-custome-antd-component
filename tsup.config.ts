@@ -5,7 +5,7 @@ import { defineConfig } from 'tsup';
 // automatically produces dist/foo/index.* (subpath `@phanvanhieu/ui/foo`, see package.json exports).
 const componentEntries = Object.fromEntries(
   readdirSync('src/components', { withFileTypes: true })
-    .filter((d) => d.isDirectory())
+    .filter((d) => d.isDirectory() && !d.name.startsWith('_')) // `_shared` is internal, not a public entry
     .map((d) => [`${d.name.toLowerCase()}/index`, `src/components/${d.name}/index.ts`]),
 );
 
