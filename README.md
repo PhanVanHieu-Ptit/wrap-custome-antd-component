@@ -1,7 +1,8 @@
 # @phanvanhieu/ui
 
 Internal wrapper around [Ant Design](https://ant.design) (v6) that standardises theme, props and refs
-across teams. Rename the package in `package.json` to your scope.
+across teams. Every antd component is exported from the root; most are antd itself, a few add
+library standards.
 
 ## Usage
 
@@ -20,22 +21,38 @@ export function App() {
 }
 ```
 
-Per-component subpaths are also available (e.g. `@phanvanhieu/ui/select`, `@phanvanhieu/ui/theme`),
-and the root import is tree-shakable too.
+The root import is tree-shakable (`import { Divider } from '@phanvanhieu/ui'` bundles exactly what
+`import { Divider } from 'antd'` does). Wrapped components also have subpaths, e.g.
+`@phanvanhieu/ui/select`, plus `@phanvanhieu/ui/theme`.
 
 ## Components
 
-| Component     | Subpath                       | Extras on top of antd                                                    |
-| ------------- | ----------------------------- | ------------------------------------------------------------------------ |
-| `Button`      | `@phanvanhieu/ui/button`      | `loadingText`, `autoLoading`, Promise-aware `onClick`                    |
-| `Input`       | `@phanvanhieu/ui/input`       | `label`, `helperText`, `errorMessage` (+ `Password`, `Search`, …)        |
-| `Select`      | `@phanvanhieu/ui/select`      | `label`, `helperText`, `errorMessage` (+ `Option`, `OptGroup`)           |
-| `InputNumber` | `@phanvanhieu/ui/inputnumber` | `label`, `helperText`, `errorMessage`                                    |
-| `DatePicker`  | `@phanvanhieu/ui/datepicker`  | `label`, `helperText`, `errorMessage` (+ `RangePicker`, `TimePicker`, …) |
-| `Checkbox`    | `@phanvanhieu/ui/checkbox`    | thin wrapper (+ `Group`)                                                 |
-| `Radio`       | `@phanvanhieu/ui/radio`       | thin wrapper (+ `Group`, `Button`)                                       |
-| `Switch`      | `@phanvanhieu/ui/switch`      | thin wrapper                                                             |
-| `Form`        | `@phanvanhieu/ui/form`        | thin wrapper (+ `Item`, `List`, `useForm`, `useWatch`, …)                |
+Components are grouped by category in `src/components/<category>/`. **Bold** = wrapper with library
+logic, everything else is a direct re-export of antd (same value, types and statics).
+
+| Category       | Components                                                                                                                                                                                                       |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `general`      | **Button** (`loadingText`, `autoLoading`, Promise-aware `onClick`), FloatButton, Typography                                                                                                                      |
+| `layout`       | Col, Divider, Flex, Grid, Layout, Masonry, Row, Space, Splitter                                                                                                                                                  |
+| `navigation`   | Anchor, Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs                                                                                                                                                      |
+| `data-entry`   | AutoComplete, Cascader, **Checkbox**, ColorPicker, **DatePicker**, **Form**, **Input**, **InputNumber**, Mentions, **Radio**, Rate, **Select**, Slider, **Switch**, TimePicker, Transfer, TreeSelect, **Upload** |
+| `data-display` | Avatar, Badge, Calendar, Card, Carousel, Collapse, Descriptions, Empty, Image, List, Listy, Popover, QRCode, Segmented, Statistic, **Table**, Tag, Timeline, Tooltip, Tree                                       |
+| `feedback`     | Alert, Drawer, **Modal**, Popconfirm, Progress, Result, Skeleton, Spin, Tour, `message`, `notification`                                                                                                          |
+| `other`        | Affix, App, BackTop, BorderBeam, ConfigProvider, Watermark, `theme` (antd's), `version`, utility types (`GetProps`, `GetRef`, …)                                                                                 |
+
+What the wrappers add (all optional, antd's API is otherwise unchanged):
+
+| Component                                      | Extras                                                                                    |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Input`, `InputNumber`, `Select`, `DatePicker` | `label`, `helperText`, `errorMessage` (`required` shows `*` on Select / DatePicker)       |
+| `Form`                                         | defaults `layout="vertical"`, `scrollToFirstError`                                        |
+| `Table`                                        | default pagination with page-size selector and total; `pagination={false}` still disables |
+| `Modal`                                        | defaults `centered`, `destroyOnHidden`                                                    |
+| `Upload`                                       | `maxSize` (bytes) + `onReject`; composes with your own `beforeUpload`                     |
+| `Checkbox`, `Radio`, `Switch`                  | thin wrappers (typed refs, antd statics kept)                                             |
+
+Notes: `Modal.confirm` & co. and `message` / `notification` are antd's statics and ignore the
+defaults above; use `App.useApp()` / `Modal.useModal()` to get theme context.
 
 ## Theme layers (lowest → highest priority)
 
@@ -46,7 +63,7 @@ and the root import is tree-shakable too.
 
 ## Scripts
 
-`pnpm dev` (Storybook) · `pnpm test` · `pnpm typecheck` · `pnpm lint` · `pnpm build` · `pnpm check:exports`
+`pnpm dev` (Storybook) · `pnpm test` · `pnpm typecheck` · `pnpm lint` · `pnpm build` · `pnpm check:exports` · `pnpm exports:sync`
 
 Adding a component: see [docs/WRAPPING_GUIDE.md](docs/WRAPPING_GUIDE.md).
 

@@ -100,6 +100,16 @@
         "default": "./dist/inputnumber/index.cjs"
       }
     },
+    "./modal": {
+      "import": {
+        "types": "./dist/modal/index.d.ts",
+        "default": "./dist/modal/index.js"
+      },
+      "require": {
+        "types": "./dist/modal/index.d.cts",
+        "default": "./dist/modal/index.cjs"
+      }
+    },
     "./radio": {
       "import": {
         "types": "./dist/radio/index.d.ts",
@@ -130,6 +140,26 @@
         "default": "./dist/switch/index.cjs"
       }
     },
+    "./table": {
+      "import": {
+        "types": "./dist/table/index.d.ts",
+        "default": "./dist/table/index.js"
+      },
+      "require": {
+        "types": "./dist/table/index.d.cts",
+        "default": "./dist/table/index.cjs"
+      }
+    },
+    "./upload": {
+      "import": {
+        "types": "./dist/upload/index.d.ts",
+        "default": "./dist/upload/index.js"
+      },
+      "require": {
+        "types": "./dist/upload/index.d.cts",
+        "default": "./dist/upload/index.cjs"
+      }
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
@@ -138,9 +168,13 @@
     "build:storybook": "storybook build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:exports": "publint && attw --pack . --profile node16",
+    "exports:sync": "node scripts/sync-exports.ts",
+    "exports:check": "node scripts/sync-exports.ts --check",
+    "check:exports": "pnpm exports:check && publint && attw --pack . --profile node16",
     "changeset": "changeset"
   },
   "peerDependencies": {
