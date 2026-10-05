@@ -12,6 +12,8 @@ export const designTokens = {
   colorInfo: '#1668dc',
   borderRadius: 8,
   controlHeight: 36,
+  // Focus ring colour is derived by antd from `colorPrimary`, so brand overrides keep it in sync.
+  controlOutlineWidth: 3,
   fontSize: 14,
   fontFamily:
     "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",

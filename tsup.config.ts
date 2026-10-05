@@ -1,12 +1,10 @@
-import { readdirSync } from 'node:fs';
 import { defineConfig } from 'tsup';
+import { listComponentEntries } from './scripts/entries.ts';
 
-// One entry per component folder → adding src/components/Foo/index.ts
-// automatically produces dist/foo/index.* (subpath `@phanvanhieu/ui/foo`, see package.json exports).
+// One entry per component folder → adding src/components/<category>/Foo/index.ts
+// produces dist/foo/index.* (subpath `@phanvanhieu/ui/foo`; run `pnpm exports:sync` to update package.json).
 const componentEntries = Object.fromEntries(
-  readdirSync('src/components', { withFileTypes: true })
-    .filter((d) => d.isDirectory() && !d.name.startsWith('_')) // `_shared` is internal, not a public entry
-    .map((d) => [`${d.name.toLowerCase()}/index`, `src/components/${d.name}/index.ts`]),
+  listComponentEntries().map(({ name, source }) => [`${name}/index`, source]),
 );
 
 export default defineConfig({

@@ -13,3 +13,8 @@ export interface FieldCustomProps {
 
 /** antd's validation status (`'' | 'error' | 'warning'`). */
 export type FieldStatus = AntInputProps['status'];
+
+/** Adds the `*` marker to the label for controls that have no native `required` (Select, DatePicker). */
+export interface FieldRequiredProps {
+  required?: boolean;
+}
